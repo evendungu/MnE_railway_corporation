@@ -1,0 +1,89 @@
+# File name: rail.kv
+#:kivy 1.10.0
+<MyButton@Button>:
+    size_hint: 0.25, .10
+    color: (1.0, 1.0, 1.0, 1.0)
+    font_size: 30
+    background_color: (1,1.5,0,1)  
+    size_hint: 0.25, .10
+
+<MyToggleButton@ToggleButton>:
+    size_hint: 0.25, .10
+    color: (1.0, 1.0, 1.0, 1.0)
+    font_size: 30
+    background_color: (1.0, 0.0, 1.0, 1.0)
+
+
+Controller:
+<Controller>:
+    log_results: log_list
+    FloatLayout:
+        Label:
+            text: "[b]M&E Railway Corporation[/b][color=f343ff]"
+            markup: True
+            pos_hint: {'x': 0, 'y': 0.85}
+            font_size: 40
+            size_hint: 1, .1
+            color: (1.0, 1.0, 1.0, 1.0)
+            background_color: (0.0, 1.0, 0.0, 1.0)
+
+        MyButton:
+            text: "Train New"
+            pos_hint: {'x': 0, 'y': 0.35}
+            on_press: root.Train_new()
+            
+
+        MyButton:
+            text: "Show Errors"
+            pos_hint: {'x': 0, 'y': 0.45}
+            on_press: root.Show_errors()
+            
+        MyToggleButton:
+            text: "Run (Test)"
+            pos_hint: {'x': 0, 'y': 0.55}
+            on_state: root.Test_run(*args)
+            
+        MyToggleButton:
+            text: "Collect Data"
+            pos_hint: {'x': 0, 'y': 0.65}
+            on_state: root.collect_data(*args)            
+            
+        MyButton:
+            text: "EXIT"
+            pos_hint: {'x': 0.75, 'y': 0.35}
+            on_press: app.stop()
+            
+        MyButton:
+            text: "Graph deflection"
+            pos_hint: {'x': 0.75, 'y': 0.45}
+            on_press: root.Graph_deflection()
+
+        MyButton:
+            text: "Test Connection"
+            pos_hint: {'x': 0.75, 'y': 0.55}
+            on_press: root.Check_Connection()
+            
+        MyButton:
+            text: "Test Sensors"
+            pos_hint: {'x': 0.75, 'y': 0.65}
+            on_press: root.check_sensors()
+
+        ScrollView:
+            pos_hint: {'x': 0, 'y': 0.05}
+            size_hint: 1, .3
+            font_size: 14
+            background_color: (1.0, 0.0, 0.0, 1.0)
+            ListView:
+                id: log_list                
+                 
+            
+        Image:
+            pos_hint: {'x': 0.25, 'y': 0.35}
+            keep_ratio: False
+            allow_stretch: True
+            size_hint_x: 0.5
+            size_hint_y: .5
+            height: dp(5)
+            source: "./Resources/Rail__Pic.jpg"
+            
+            

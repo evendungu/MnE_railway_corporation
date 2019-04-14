@@ -1,0 +1,32 @@
+          
+Root:
+
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: 1
+            size_hint_x: 1
+            Button:
+                font_size: '30sp'
+                text: 'Click here to choose the .csv file that will be used'
+                on_release: root.show_load()
+
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+            path: "F:\Class Work\Fifth Year\Project clone\Data"
+
+        BoxLayout:
+            size_hint_y: None
+            height: 40
+            Button:
+                text: "Cancel"
+                on_release: App.close()
+
+            Button:
+                text: "Load"
+                on_release: root.load(filechooser.path, filechooser.selection)
